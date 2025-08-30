@@ -1,4 +1,4 @@
-name: CI Test
+name: CI Always Fail
 
 on:
   push:
@@ -14,13 +14,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Run tests
+      - name: Force a failure
         run: |
-          echo "Running simple test..."
-          # Simulate a failure 50% of the time
-          RANDOM_FAIL=$((RANDOM % 2))
-          if [ $RANDOM_FAIL -eq 0 ]; then
-            echo "Simulated failure"
-            exit 1   # <-- This makes the job fail
-          fi
-          echo "All tests passed"
+          echo "This job is supposed to fail!"
+          exit 1   # <-- always fails
